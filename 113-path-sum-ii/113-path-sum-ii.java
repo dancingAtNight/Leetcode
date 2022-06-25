@@ -24,7 +24,8 @@ class Solution {
         
         if(root == null) return;
         currPath.add(root.val);
-        if(root.val == sum && root.left == null&& root.right == null){
+        
+        if(root.val == sum && root.left == null && root.right == null){
             allPath.add(new ArrayList<>(currPath));
         }else{
             helper(root.left, sum - root.val, currPath, allPath);
