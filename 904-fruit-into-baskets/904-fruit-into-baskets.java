@@ -10,18 +10,16 @@ class Solution {
            
             while(map.size()> 2){
                map.put(fruits[left], map.get(fruits[left])-1);
+                
                 if(map.get(fruits[left]) == 0){
                     map.remove(fruits[left]);
-                
                 }
                 left++;
             }
                 
              maxSum = Math.max(maxSum, right - left + 1);
                 
-            }
-            
-        return maxSum;
-        
+            }    
+        return maxSum;   
     }
 }
