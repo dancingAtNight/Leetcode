@@ -16,20 +16,21 @@
 class Solution {
 
     public int countNodes(TreeNode root) {
-         if(root == null) return 0;
-        Queue<TreeNode> queue = new LinkedList<>();
-        int count  = 0;
-        queue.offer(root);
-        while(!queue.isEmpty()){
-            count++;
-         TreeNode curr = queue.poll();
-            if(curr.left != null) queue.offer(curr.left);
-            if(curr.right != null) queue.offer(curr.right);
-            
+        TreeNode left = root, right = root;
+        int rightHeight = 0, leftHeight = 0;
+        while(left != null){
+            left = left.left;
+            leftHeight++;
         }
-        return count;
-        
-       
+        while(right != null){
+            right = right.right;
+            rightHeight++;
+        }
+       if(leftHeight == rightHeight){
+           return (int)Math.pow(2, leftHeight) -1;
+           
+       }
+        return 1 + countNodes(root.left) + countNodes(root.right);
         
     }
 }
