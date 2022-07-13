@@ -14,24 +14,22 @@
  * }
  */
 class Solution {
-    int maxDia = 0;
+    int maxDiameter = 0;
+
     public int diameterOfBinaryTree(TreeNode root) {
-       maxDepth(root);
-        return maxDia;
-            
+        maxDepth(root);
+        return maxDiameter;
     }
-    private int maxDepth(TreeNode root){
-        if(root == null) return 0;
-        int left = maxDepth(root.left);
-        int right = maxDepth(root.right);
-        maxDia = Math.max(maxDia, left + right);
-        return Math.max(left, right) + 1;
-    
-    
-    
+
+    int maxDepth(TreeNode root) {
+        if (root == null) {
+            return 0;
+        }
+        int leftMax = maxDepth(root.left);
+        int rightMax = maxDepth(root.right);
+        // 后序遍历位置顺便计算最大直径
+        maxDiameter = Math.max(maxDiameter, leftMax + rightMax);
+        return 1 + Math.max(leftMax, rightMax);
     }
-    
-    
-    
 }
    
