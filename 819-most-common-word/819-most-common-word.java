@@ -10,12 +10,8 @@ class Solution {
                 map.remove(banWord);
             }
         }
-        String res = " ";
-        for (String word : map.keySet()) {
-            if (res == " " || map.get(word) > map.get(res)) {
-                res = word;
-            }
+       PriorityQueue<Map.Entry<String, Integer>> maxHeap = new PriorityQueue<>((a, b) -> b.getValue() - a.getValue());
+        maxHeap.addAll(map.entrySet());
+        return maxHeap.poll().getKey();
         }
-        return res;
-    }
 }
