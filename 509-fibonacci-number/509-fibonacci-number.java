@@ -1,9 +1,13 @@
 class Solution {
+    private Map<Integer, Integer> cache = new HashMap<>(Map.of(0, 0, 1, 1));
     public int fib(int n) {
-        if(n  == 0) return 0;
-        if(n == 1) return 1;
-        return fib(n-1) + fib(n-2);
-        
-        
-    }
+        if(cache.containsKey(n)){
+            return cache.get(n);
+            }
+           cache.put(n, fib(n - 1) + fib(n-2));
+            return cache.get(n);
+                    
+          
+   
+    }  
 }
