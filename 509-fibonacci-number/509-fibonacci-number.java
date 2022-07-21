@@ -1,13 +1,15 @@
 class Solution {
-    private Map<Integer, Integer> cache = new HashMap<>(Map.of(0, 0, 1, 1));
     public int fib(int n) {
-        if(cache.containsKey(n)){
-            return cache.get(n);
-            }
-           cache.put(n, fib(n - 1) + fib(n-2));
-            return cache.get(n);
-                    
-          
-   
-    }  
+        if(n <= 1) return n;
+        int[] f = new int[2];
+        f[0] = 0;
+        f[1] = 1;
+        for(int i = 2; i <= n; i++){
+         int sum = f[0] + f[1];
+            f[0] = f[1];
+            f[1] = sum;
+        }
+        return f[1];
+        
+    }
 }
