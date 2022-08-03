@@ -14,29 +14,24 @@
  * }
  */
 class Solution {
+    int res = 0;
     public int closestValue(TreeNode root, double target) {
-        List<Integer> curr = new ArrayList<>();
-        helper(root, curr);
-        int tar = 0;
-     
-        
-        double diff = Double.MAX_VALUE;
-        
-        for(int i = 0; i < curr.size(); i++){
-            if(Math.abs(target - (double)curr.get(i)) < diff){
-                diff = Math.abs(target -(double) curr.get(i));
-                 tar = curr.get(i);
-            }
-            
-        }
-        return tar;     
+        res = root.val;
+        traverse(root, target);
+        return res;
         
     }
-    private void helper(TreeNode root, List<Integer> list){
+    void traverse(TreeNode root, double target){
         if(root == null) return;
-        helper(root.left, list);
-        list.add(root.val);
-        helper(root.right, list);
-    
-       }
+        if(Math.abs(root.val - target) < Math.abs(res - target)){
+            res = root.val;
+        }
+        if(root.val < target){
+            traverse(root.right, target);
+            
+        }
+        else{
+            traverse(root.left, target);
+        }
+    }
 }
