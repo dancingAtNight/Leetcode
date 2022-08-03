@@ -26,7 +26,7 @@ class Solution {
 
     public List<Integer> closestKValues(TreeNode root, double target, int k) {
         List<Integer> list = new ArrayList<>();
-        Queue<Integer> heap = new PriorityQueue<>((a, b) -> Math.abs(a - target) > Math.abs(b-target) ? -1: 1);
+        Queue<Integer> heap = new PriorityQueue<>((a, b) ->Math.abs(a - target) > Math.abs(b-target) ? -1: 1);
         inorder(root, list, heap, k);
         
         return new ArrayList<>(heap);
