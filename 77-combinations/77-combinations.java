@@ -13,7 +13,7 @@ class Solution {
             res.add(new ArrayList<>(path));
             return;
         }
-        for(int i = start; i <= n; i++){
+        for(int i = start; i <= n-(k - path.size()) + 1; i++){
             path.add(i);
             backtrack(n, k,path, i+1);
            path.remove(path.size() -1);
