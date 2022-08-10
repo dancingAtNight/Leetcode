@@ -2,12 +2,14 @@ class Solution {
     List<List<Integer>> res = new ArrayList<>();
  
     public List<List<Integer>> combine(int n, int k) {
-        if(k <= 0 || n <= 0) return res;
+       // if(k <= 0 || n <= 0) return res;
         List<Integer> path = new ArrayList<>();
         backtrack(n, k,path, 1);
         return res;
         
     }
+    
+    
     public void backtrack(int n, int k, List<Integer> path, int start){
         if(path.size() == k){
             res.add(new ArrayList<>(path));
