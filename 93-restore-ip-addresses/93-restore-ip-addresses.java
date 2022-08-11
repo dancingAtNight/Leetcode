@@ -2,11 +2,11 @@ class Solution {
    public List<String> restoreIpAddresses(String s) {
     List<String> ret = new LinkedList<>();
     int[] path = new int[4];
-    helper(ret, s, 0,  path, 0);
+    backtracking(ret, s, 0,  path, 0);
     return ret;
 }
 
-void helper(List<String> acc, String s, int idx, int[] path,  int segment){
+void backtracking(List<String> acc, String s, int idx, int[] path,  int segment){
     if(segment == 4 && idx == s.length() ){
         acc.add(path[0] + "." + path[1] + "."+ path[2] + "." + path[3]);
         return ;
@@ -21,7 +21,7 @@ void helper(List<String> acc, String s, int idx, int[] path,  int segment){
             break; 
             
         path[segment] = val;
-        helper(acc, s, idx + len, path, segment + 1);
+        backtracking(acc, s, idx + len, path, segment + 1);
         path[segment] = -1; // for debug. 
     }
 }
