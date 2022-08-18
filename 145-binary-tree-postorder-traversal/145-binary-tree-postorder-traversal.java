@@ -13,20 +13,25 @@
  *     }
  * }
  */
+
+// left -> right -> root
 class Solution {
-    List<Integer> res = new LinkedList<>();
     public List<Integer> postorderTraversal(TreeNode root) {
-        traverse(root);
+        List<Integer> res = new LinkedList<>();
+        Stack<TreeNode> stack = new Stack<>();
+        if(root == null) return res;
+        stack.add(root);
+        while(!stack.isEmpty()){
+            TreeNode curr = stack.pop();
+            res.add(curr.val);
+            if(curr.left != null) stack.add(curr.left);
+            if(curr.right != null) stack.add(curr.right);
+
+        }
+        Collections.reverse(res);
         return res;
         
-    }
-    public void traverse(TreeNode root){
-        if(root == null){
-            return;
-        }
-        traverse(root.left);
-        traverse(root.right);
-        res.add(root.val);
-
+        
+        
     }
 }
