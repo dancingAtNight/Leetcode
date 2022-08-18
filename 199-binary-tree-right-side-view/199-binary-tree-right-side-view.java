@@ -22,16 +22,15 @@ class Solution {
         
         while(!queue.isEmpty()){
             int size =queue.size();
-            List<Integer> list = new LinkedList<>();
+           TreeNode last = queue.peek();
             for(int i = 0; i < size; i++){
                 TreeNode curr = queue.poll();
-                list.add(curr.val);
-                if(curr.left != null) queue.offer(curr.left);
-                if(curr.right != null ) queue.offer(curr.right);
+                if(curr.right!= null) queue.offer(curr.right);
+                if(curr.left!= null ) queue.offer(curr.left);
                 
 
             }
-            res.add(list.get(list.size() -1));
+            res.add(last.val);
             
             
         }
