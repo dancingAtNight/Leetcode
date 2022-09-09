@@ -1,25 +1,24 @@
 class Solution {
     public int totalFruit(int[] fruits) {
-        int left = 0;
-        int maxSum = 0;
-        
+         if (fruits == null || fruits.length == 0) {
+            throw new IllegalArgumentException();
+        }
         Map<Integer, Integer> map = new HashMap<>();
-        for(int right = 0; right < fruits.length; right++){
-            //put each fruit into the basket
+        int max = 0;
+        for (int left = 0, right = 0; right < fruits.length; right++) {
             map.put(fruits[right], map.getOrDefault(fruits[right], 0) + 1);
-           
-            while(map.size()> 2){
-               map.put(fruits[left], map.get(fruits[left])-1);
-                
-                if(map.get(fruits[left]) == 0){
+            if (map.size() > 2) {
+                map.put(fruits[left], map.get(fruits[left]) - 1);
+                if (map.get(fruits[left]) == 0) {
                     map.remove(fruits[left]);
                 }
                 left++;
             }
-                
-             maxSum = Math.max(maxSum, right - left + 1);
-                
-            }    
-        return maxSum;   
+            max = Math.max(max, right - left + 1);
+
+        }
+        return max;
+
+        
     }
 }
