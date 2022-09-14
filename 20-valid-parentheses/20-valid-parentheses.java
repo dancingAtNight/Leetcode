@@ -19,11 +19,10 @@ class Solution {
             }
             else {
                 // closing parenthesis: ), }, ]
-                if(!stack.empty() && stack.peek() == open.get(s.charAt(i))){
-                    stack.pop();
-                    continue;
+                if(stack.empty() || stack.peek() != open.get(s.charAt(i))){
+                    return false;
                 }
-                return false;
+                stack.pop();
                 
             }
         }
