@@ -1,6 +1,15 @@
 class Solution {
     public boolean isValid(String s) {
+        /*
+            Time spent: 40 minutes
+            TC: O(n) 
+            SC: O(n)
+        */
         Stack<Character> stack = new Stack<>();
+        HashMap<Character, Character> open = new HashMap<>();
+        open.put(')', '(');
+        open.put('}', '{');
+        open.put(']', '[');
         if(s == null || s.length() == 0) {
             return false;
         }
@@ -8,35 +17,14 @@ class Solution {
             if(s.charAt(i) == '(' || s.charAt(i) == '{' || s.charAt(i) =='[' ){
                 stack.push(s.charAt(i));
             }
-            else if(s.charAt(i) == ')'){
-                if(!stack.empty() && stack.peek() != '('){
-                    return false;
-                  
-                }else if(stack.empty()){
-                    return false;
-
-                }else if(stack.peek() == '('){
+            else {
+                // closing parenthesis: ), }, ]
+                if(!stack.empty() && stack.peek() == open.get(s.charAt(i))){
                     stack.pop();
-
+                    continue;
                 }
+                return false;
                 
-            }else if(s.charAt(i) == ']'){
-                if(!stack.empty() && stack.peek() != '['){
-                    return false;
-                }else if(stack.empty()){
-                    return false;
-                }else if(stack.peek() == '['){
-                    stack.pop();
-                }
-            }else{
-                if(!stack.empty() && stack.peek() != '{'){
-                    return false;
-                    
-                }else if(stack.empty()){
-                    return false;}
-                else if(stack.peek() == '{'){
-                    stack.pop();
-                    }
             }
         }
         
