@@ -1,23 +1,52 @@
 class Solution {
     public boolean isValid(String s) {
-        if(s.length() % 2 != 0) return false;
-        Stack<Character> stk = new Stack<>();
-        for(int i = 0; i < s.length(); i++){
-            char c = s.charAt(i);
-            if(c == '(' || c == '{' || c =='['){
-                stk.push(c);
-            }else if(c == ')'&& !stk.isEmpty() && stk.peek() == '('){
-                stk.pop();
-            }else if (c == '}'&& !stk.isEmpty() && stk.peek() == '{' ){
-                stk.pop();
-            }
-            else if (c == ']'&& !stk.isEmpty() && stk.peek() == '['){
-                stk.pop();  }else{
-                return false;
-            }
-        
+        Stack<Character> stack = new Stack<>();
+        if(s == null || s.length() == 0) {
+            return false;
         }
-        return stk.isEmpty();
+        for(int i = 0; i < s.length(); i++){
+            if(s.charAt(i) == '(' || s.charAt(i) == '{' || s.charAt(i) =='[' ){
+                stack.push(s.charAt(i));
+            }
+            else if(s.charAt(i) == ')'){
+                if(!stack.empty() && stack.peek() != '('){
+                    return false;
+                  
+                }else if(stack.empty()){
+                    return false;
+
+                }else if(stack.peek() == '('){
+                    stack.pop();
+
+                }
+                
+            }else if(s.charAt(i) == ']'){
+                if(!stack.empty() && stack.peek() != '['){
+                    return false;
+                }else if(stack.empty()){
+                    return false;
+                }else if(stack.peek() == '['){
+                    stack.pop();
+                }
+            }else{
+                if(!stack.empty() && stack.peek() != '{'){
+                    return false;
+                    
+                }else if(stack.empty()){
+                    return false;}
+                else if(stack.peek() == '{'){
+                    stack.pop();
+                    }
+            }
+        }
+        
+        
+        if(stack.empty()){
+            return true;
+        }else{
+
+            return false;
+        }
         
     }
 }
