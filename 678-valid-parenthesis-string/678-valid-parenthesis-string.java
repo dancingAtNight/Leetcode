@@ -2,6 +2,13 @@ class Solution {
     public boolean checkValidString(String s) {
         
                /*
+               time complexcity --0(n) + O(n) 
+               space : O(m + n) m is the size of left stack(the number of left parenthesis) and n is the size of the star stack(the number of star)
+                
+                
+                Feedback:
+                --- never explain complexity by saying it's not n^2 and not log(n) so it's O(n)
+                -- 
                 
                */
         if(s == null || s.length() == 0) return false;
@@ -58,24 +65,27 @@ class Solution {
             if(l > r){
                 return false;
             }
-}
-       
-      if(left.isEmpty() && star.isEmpty()){
-          return true;
-
-      }else if(!left.isEmpty() && star.isEmpty()){
+        }
+        
+        /*
+        s =  "(((***"
+        left = (0,1,2)
+        
+        s = "((*"
+        left = (0,1) star = (2)
+        
+        s  = "()*"
+        
+         
+        
+        */
+       if(!left.isEmpty() && star.isEmpty())
           return false;
-
-      }else{
-          return true;
-      }
+      return true;
 }
         
         // --- 
-        // if s = "((*)"  left = (0) star = (2)  
-        
-        
-        
+        // if s = "((*)"  left = (0) star = (2)       
         
     }
 
