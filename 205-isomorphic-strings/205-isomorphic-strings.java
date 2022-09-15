@@ -6,7 +6,8 @@ class Solution {
     
 map = {b:b, a:a, d:b, c:a}
 map2 = {b:b, a:a, b:d}
-    
+    time - O(n)
+    space - O(n)
     */
     public boolean isIsomorphic(String s, String t) {
         Map<Character, Character> map = new HashMap<>();
@@ -21,10 +22,6 @@ map2 = {b:b, a:a, b:d}
                }
             }
             
-
-        }
-        
-        for(int i = 0; i< s.length(); i++){
             if(!map2.containsKey(t.charAt(i))){
                 map2.put(t.charAt(i), s.charAt(i));
             }else{
@@ -33,7 +30,8 @@ map2 = {b:b, a:a, b:d}
                 }
             }
 
-        }  
+        }
+        
          return true;
     }
    
