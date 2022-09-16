@@ -1,24 +1,24 @@
 class TrieNode {
 
-    // R links to node children
-    private TrieNode[] links;
+    // R children to node children
+    private TrieNode[] children;
 
     private final int R = 26;
 
     private boolean isEnd;
 
     public TrieNode() {
-        links = new TrieNode[R];
+        children = new TrieNode[R];
     }
 
     public boolean containsKey(char ch) {
-        return links[ch -'a'] != null;
+        return children[ch -'a'] != null;
     }
     public TrieNode get(char ch) {
-        return links[ch -'a'];
+        return children[ch -'a'];
     }
     public void put(char ch, TrieNode node) {
-        links[ch -'a'] = node;
+        children[ch -'a'] = node;
     }
     public void setEnd() {
         isEnd = true;
@@ -38,41 +38,39 @@ class Trie {
 
     // Inserts a word into the trie.
     public void insert(String word) {
-        TrieNode node = root;
-        for (int i = 0; i < word.length(); i++) {
-            char currentChar = word.charAt(i);
-            if (!node.containsKey(currentChar)) {
-                node.put(currentChar, new TrieNode());
+       TrieNode node = root;
+        for(int i = 0; i < word.length(); i++){
+            char currChar = word.charAt(i);
+            if(!node.containsKey(currChar)){
+                node.put(currChar, new TrieNode());  
             }
-            node = node.get(currentChar);
+            node = node.get(currChar);
         }
         node.setEnd();
     }
     
     public boolean search(String word) {
-       TrieNode node = root;
-        for (int i = 0; i < word.length(); i++) {
-           char curLetter = word.charAt(i);
-           if (node.containsKey(curLetter)) {
-               node = node.get(curLetter);
-           } else {
-               return false;
-           }
+        TrieNode node = root;
+        for(char currChar: word.toCharArray()){
+            if(!node.containsKey(currChar)){
+                return false;
+            }
+            node = node.get(currChar);
         }
         return node.isEnd();
+        
     }
     
     public boolean startsWith(String prefix) {
         TrieNode node = root;
-        for (int i = 0; i < prefix.length(); i++) {
-           char curLetter = prefix.charAt(i);
-           if (node.containsKey(curLetter)) {
-               node = node.get(curLetter);
-           } else {
-               return false;
-           }
+        for(char currChar: prefix.toCharArray()){
+            if(!node.containsKey(currChar)){
+                return false;
+            }
+            node = node.get(currChar);
         }
         return true;
+        
     }
 }
 
