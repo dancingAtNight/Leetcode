@@ -1,39 +1,31 @@
 class Solution {
     public boolean isValid(String s) {
-        /*
-            Time spent: 40 minutes
-            TC: O(n) 
-            SC: O(n)
-        */
         Stack<Character> stack = new Stack<>();
-        HashMap<Character, Character> open = new HashMap<>();
-        open.put(')', '(');
-        open.put('}', '{');
-        open.put(']', '[');
-        if(s == null || s.length() == 0) {
-            return false;
-        }
-        for(int i = 0; i < s.length(); i++){
-            if(s.charAt(i) == '(' || s.charAt(i) == '{' || s.charAt(i) =='[' ){
-                stack.push(s.charAt(i));
-            }
-            else {
-                // closing parenthesis: ), }, ]
-                if(stack.empty() || stack.peek() != open.get(s.charAt(i))){
+        for(int i = 0; i <s.length(); i++)
+        {
+            char ch = s.charAt(i);
+            if(ch == '{' || ch == '('|| ch =='['){
+                stack.push(ch);
+            
+            }else{
+                if(!stack.isEmpty() && rightChar(ch) == stack.peek()){
+                    stack.pop();
+                }else{
                     return false;
                 }
-                stack.pop();
-                
             }
         }
-        
-        
-        if(stack.empty()){
-            return true;
-        }else{
-
-            return false;
+        return stack.isEmpty();
+    }
+    private static char rightChar(char ch ){
+        if(ch == ']' ){
+            return '[';
+        }else if(ch == ')'){
+            return '(';
+        }else {
+            return '{';
         }
         
     }
+   
 }
