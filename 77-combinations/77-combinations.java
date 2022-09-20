@@ -1,25 +1,22 @@
 class Solution {
-    List<List<Integer>> res = new ArrayList<>();
- 
     public List<List<Integer>> combine(int n, int k) {
-       // if(k <= 0 || n <= 0) return res;
-        List<Integer> path = new ArrayList<>();
-        backtrack(n, k,path, 1);
+    List<List<Integer>> res = new ArrayList<>();
+        List<Integer> ans = new ArrayList<>();
+        backtrack(1, n, k, ans, res);
         return res;
         
     }
-    
-    
-    public void backtrack(int n, int k, List<Integer> path, int start){
-        if(path.size() == k){
-            res.add(new ArrayList<>(path));
+    void backtrack(int startIndex, int n, int k, List<Integer> temp, List<List<Integer>> res){
+        if( temp.size() ==k ){
+            res.add(new LinkedList<>(temp));
             return;
         }
-        for(int i = start; i <= n-(k - path.size()) + 1; i++){
-            path.add(i);
-            backtrack(n, k,path, i+1);
-           path.remove(path.size() -1);
-        }
+        for(int i = startIndex; i <= n; i++){
+            temp.add(i);
+            backtrack(i + 1, n, k, temp, res);
+            temp.remove(temp.size() -1);
         
+              
+        }
     }
 }
