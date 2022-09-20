@@ -1,27 +1,27 @@
 class Solution {
-    List<List<Integer>> res = new LinkedList<>();
     public List<List<Integer>> combinationSum(int[] candidates, int target) {
+        List<List<Integer>> res = new ArrayList<>();
+        List<Integer> temp = new ArrayList<>();
         if(candidates.length == 0) return res;
-        backtrack(candidates, 0, target, 0);
+        backtrack(candidates, 0, target, 0, temp, res);
         return res;
         
     }
-    LinkedList<Integer> track = new LinkedList<>();
-    void backtrack(int[] candidates, int start, int target, int sum){
+    private void backtrack(int[] candidates, int start, int target, int sum, List<Integer> temp, List<List<Integer>> res){
         if(sum == target){
-            res.add(new LinkedList<>(track));
-            return;
+            res.add(new LinkedList<>(temp));
+            return ;
         }
         if(sum > target){
             return;
         }
         for(int i = start; i < candidates.length; i++){
-            track.add(candidates[i]);
+            temp.add(candidates[i]);
             sum += candidates[i];
-            backtrack(candidates, i, target, sum);
+            backtrack(candidates, i, target, sum, temp, res);
             sum -= candidates[i];
-            track.removeLast();
+            temp.remove(temp.size() -1);
+
         }
     }
-    
 }
