@@ -17,7 +17,7 @@ class Solution {
 
         }
         Arrays.sort(candidates);
-        for(int i = startIdx; i < candidates.length && sum + candidates[i] <= target; i++){
+        for(int i = startIdx; i < candidates.length ; i++){
             if( i > 0 && candidates[i] == candidates[i-1] && used[i-1] == false){
                     continue;
             }
